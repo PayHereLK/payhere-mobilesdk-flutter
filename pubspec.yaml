@@ -1,8 +1,7 @@
 name: payhere_mobilesdk_flutter
 description: Make PayHere payments with your Flutter App!
 version: 1.0.0
-author: PayHere
-homepage: https://www.payhere.lk
+homepage: https://github.com/PayHereLK/payhere-mobilesdk-flutter
 
 environment:
   sdk: ">=2.7.0 <3.0.0"

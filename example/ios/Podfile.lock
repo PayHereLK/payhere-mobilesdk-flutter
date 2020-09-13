@@ -1,0 +1,42 @@
+PODS:
+  - Alamofire (5.0.0-rc.2)
+  - AlamofireObjectMapper (6.2.0):
+    - Alamofire (= 5.0.0-rc.2)
+    - ObjectMapper (~> 3.5.1)
+  - Flutter (1.0.0)
+  - ObjectMapper (3.5.3)
+  - payhere_mobilesdk_flutter (0.0.1):
+    - Flutter
+    - payHereSDK (= 2.1.0)
+  - payHereSDK (2.1.0):
+    - Alamofire (~> 5.0.0-rc.2)
+    - AlamofireObjectMapper
+
+DEPENDENCIES:
+  - Flutter (from `Flutter`)
+  - payhere_mobilesdk_flutter (from `.symlinks/plugins/payhere_mobilesdk_flutter/ios`)
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - AlamofireObjectMapper
+    - ObjectMapper
+    - payHereSDK
+
+EXTERNAL SOURCES:
+  Flutter:
+    :path: Flutter
+  payhere_mobilesdk_flutter:
+    :path: ".symlinks/plugins/payhere_mobilesdk_flutter/ios"
+
+SPEC CHECKSUMS:
+  Alamofire: f9450d3c7f6bea2ad62e7a541c3e9b186c7991d6
+  AlamofireObjectMapper: 74d1440c92c42bbcc2b5f4dc81654ac095ec669f
+  Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
+  ObjectMapper: 97111c97e054a6ee25917662106689f0b4127b37
+  payhere_mobilesdk_flutter: 89b66287cc896764908b118a687ce8de09eb49a2
+  payHereSDK: 292c72f5fa6fada5f72bd1dc8d1196994cebe408
+
+PODFILE CHECKSUM: 466ff8d89a1dc635fb187df1bfd1905a4df4b787
+
+COCOAPODS: 1.9.3

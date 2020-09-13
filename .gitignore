@@ -1,0 +1,16 @@
+.DS_Store
+.dart_tool/
+.idea
+
+.packages
+.pub/
+
+.metadata
+.packages
+
+build/
+
+example/build
+example/ios/Pods
+
+.pubspec.lock

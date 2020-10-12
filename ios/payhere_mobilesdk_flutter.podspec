@@ -21,5 +21,5 @@ Make PayHere payments with your Flutter App!
   s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES', 'VALID_ARCHS[sdk=iphonesimulator*]' => 'x86_64' }
   s.swift_version = '5.0'
 
-  s.dependency "payHereSDK", '= 2.1.0'
+  s.dependency "payHereSDK", '= 2.1.1'
 end

@@ -46,9 +46,9 @@ i. Declare the Android `tools` namespace in the `<manifest>` element.
     xmlns:tools="http://schemas.android.com/tools">
 ```
 
-ii. Add the `replace` merge rule for the `android:allowBackup` attribute in the `<application>` element.
+ii. Add the `replace` merge rule for the `android:label` attribute in the `<application>` element.
 ```xml
-<application tools:replace="android:allowBackup">
+<application tools:replace="android:label">
 ```
 
 ### 3. iOS Pre-requisites ###

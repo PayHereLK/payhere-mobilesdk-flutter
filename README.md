@@ -9,7 +9,7 @@ Integrating PayHere with your Flutter App is super easy with our PayHere Flutter
 Open your Flutter project's `pubspec.yaml` file and add the PayHere Flutter SDK dependency.
 ```yaml
 dependencies:
-  payhere_mobilesdk_flutter: ^1.0.0
+  payhere_mobilesdk_flutter: ^1.0.2
 ```
 
 Then run the following commands in your Flutter project directory.
@@ -29,7 +29,7 @@ allprojects {
     repositories {
         mavenLocal()
         maven {
-            url  "https://dl.bintray.com/payhere/payhere-android-payment"
+            url  "https://repo.repsy.io/mvn/payhere/payhere-mobilesdk-android/"
         }
     }
 }
@@ -248,6 +248,12 @@ Each payment request type (one-time/recurring/pre-approval) sends a different pa
 - One-time Payment Details: [read docs](https://support.payhere.lk/api-&-mobile-sdk/payhere-checkout#2-listening-to-payment-notification)
 - Recurring Payment Details: [read docs](https://support.payhere.lk/api-&-mobile-sdk/payhere-recurring#2-listening-to-payment-notification)
 - Preapproval Details: [read docs](https://support.payhere.lk/api-&-mobile-sdk/payhere-preapproval#2-listening-to-preapproval-notification)
+
+#### I am getting an error saying, "Could not GET 'https://dl.bintray.com..." ####
+
+PayHere Flutter Native SDK versions prior to 1.0.2 (1.0.1 and previous versions) depended on an older version of the PayHere Android SDK which is no longer available through the bintray.com Maven repository. Update to the latest version 1.0.2 and try again.
+
+If you are still experiencing issues, make sure you have followed the new "2. Android Pre-requisites" section with updated instructions for SDK versions 1.0.2 and above.
 
 #### I have a different question. Where should I raise my issues? ####
 

@@ -3,8 +3,8 @@ import 'dart:async';
 
 import 'package:flutter/services.dart';
 
-typedef PayHereOnCompletedHandler = void Function(String paymentId);
-typedef PayHereOnErrorHandler = void Function(String error);
+typedef PayHereOnCompletedHandler = void Function(String? paymentId);
+typedef PayHereOnErrorHandler = void Function(String? error);
 typedef PayHereOnDismissedHandler = void Function();
 
 class PayHere {
@@ -35,13 +35,13 @@ class PayHere {
       bool resultSuccess = result[_resultKeySuccess] as bool;
 
       if (resultSuccess){
-        String resultPaymentId = result[_resultKeyData] as String;
+        String? resultPaymentId = result[_resultKeyData] as String?;
         onCompleted(resultPaymentId);
       }
       else{
-        String resultCallbackType = result[_resultKeyCallback] as String;
+        String? resultCallbackType = result[_resultKeyCallback] as String?;
         if (resultCallbackType == _resultCallbackTypeError){
-          String error = result[_resultKeyData] as String;
+          String? error = result[_resultKeyData] as String?;
           onError(error);
         }
         else if (resultCallbackType == _resultCallbackTypeDismiss){

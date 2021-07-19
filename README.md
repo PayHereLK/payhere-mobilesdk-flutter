@@ -9,7 +9,7 @@ Integrating PayHere with your Flutter App is super easy with our PayHere Flutter
 Open your Flutter project's `pubspec.yaml` file and add the PayHere Flutter SDK dependency.
 ```yaml
 dependencies:
-  payhere_mobilesdk_flutter: ^1.0.2
+  payhere_mobilesdk_flutter: ^1.0.3
 ```
 
 Then run the following commands in your Flutter project directory.
@@ -46,9 +46,9 @@ i. Declare the Android `tools` namespace in the `<manifest>` element.
     xmlns:tools="http://schemas.android.com/tools">
 ```
 
-ii. Add the `replace` merge rule for the `android:allowBackup` attribute in the `<application>` element.
+ii. Add the `replace` merge rule for the `android:label` attribute in the `<application>` element.
 ```xml
-<application tools:replace="android:allowBackup">
+<application tools:replace="android:label">
 ```
 
 ### 3. iOS Pre-requisites ###
@@ -259,3 +259,9 @@ If you are still experiencing issues, make sure you have followed the new "2. An
 
 1. You can raise issues directly at the [Issues section](https://github.com/PayHereDevs/payhere-mobilesdk-flutter/issues) for the SDK's GitHub page.
 2. You can contact a PayHere Developer for technical support by mailing your issue and relevant code/screenshots to [techsupport@payhere.lk](mailto:techsupport@payhere.lk)
+
+#### Does this package support Flutter Null Safety?
+
+Yes! Version 1.0.3 and up opts into Flutter Null Safety. 
+
+If you are creating a new Flutter project, you will experience no issues. If you have project that you are planning to upgrade to Flutter 2 / migrate to Flutter Null Safety, there are no changes to be done in code other than increasing the PayHere Flutter SDK version to ^1.0.3.

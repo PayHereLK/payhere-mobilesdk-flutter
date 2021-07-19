@@ -1,5 +1,5 @@
 group 'lk.payhere.payhere_mobilesdk_flutter'
-version '1.0'
+version '1.1'
 
 buildscript {
     repositories {
@@ -17,7 +17,7 @@ rootProject.allprojects {
         google()
         jcenter()
         maven {
-            url  "https://dl.bintray.com/payhere/payhere-android-payment"
+            url  "https://repo.repsy.io/mvn/payhere/payhere-mobilesdk-android/"
         }
     }
 }
@@ -36,5 +36,5 @@ android {
 }
 
 dependencies {
-    implementation 'lk.payhere.sdk:android-payment-sdk:2.0.30'  // New PayHere 2.0 SDK!
+    implementation 'lk.payhere:androidsdk:2.0.31'  // New PayHere 2.0 SDK!
 }

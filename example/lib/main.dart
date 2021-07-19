@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'dart:async';
 
-import 'package:flutter/services.dart';
 import 'package:payhere_mobilesdk_flutter/payhere_mobilesdk_flutter.dart';
 
 void main() {
@@ -35,7 +33,7 @@ class _AppState extends State<App> {
 
   void showAlert(BuildContext context, String title, String msg){
     // set up the button
-    Widget okButton = FlatButton(
+    Widget okButton = TextButton(
       child: Text("OK"),
       onPressed: () { Navigator.pop(context); },
     );
@@ -179,13 +177,13 @@ class _AppState extends State<App> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            FlatButton(
+            TextButton(
               onPressed: () { startOneTimePayment(context); },
               child: Text('Start One Time Payment!')),
-            FlatButton(
+            TextButton(
               onPressed: () { startRecurringPayment(context); },
               child: Text('Start Recurring Payment!')),
-            FlatButton(
+            TextButton(
               onPressed: () { startTokenizationPayment(context); },
               child: Text('Start Tokenization Payment!')),
           ],

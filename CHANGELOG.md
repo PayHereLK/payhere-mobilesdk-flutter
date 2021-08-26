@@ -13,3 +13,7 @@ Fixed Android builds failing
 ## 1.0.3
 
 Opting into Flutter Null Safety
+
+## 1.0.4
+
+Updated Native SDKs to latest versions

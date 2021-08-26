@@ -9,7 +9,7 @@ Integrating PayHere with your Flutter App is super easy with our PayHere Flutter
 Open your Flutter project's `pubspec.yaml` file and add the PayHere Flutter SDK dependency.
 ```yaml
 dependencies:
-  payhere_mobilesdk_flutter: ^1.0.3
+  payhere_mobilesdk_flutter: ^1.0.4
 ```
 
 Then run the following commands in your Flutter project directory.
@@ -255,17 +255,13 @@ PayHere Flutter Native SDK versions prior to 1.0.2 (1.0.1 and previous versions)
 
 If you are still experiencing issues, make sure you have followed the new "2. Android Pre-requisites" section with updated instructions for SDK versions 1.0.2 and above.
 
-#### Does this package support Flutter Null Safety?
-
-Yes! Version `1.0.3` and up opts into Flutter Null Safety. 
-
-If you are creating a new Flutter project, you will experience no issues. If you have project that you are planning to upgrade to Flutter 2 / migrate to Flutter Null Safety, there are no changes to be done in code other than increasing the PayHere Flutter SDK version to `^1.0.3`.
-
-#### I am not using Flutter Null Safety, which version should I use?
-
-The last SDK version prior to upgrading to Flutter Null Safety is version `1.0.2`. The rest of the instructions and documentation would still apply as is.
-
 #### I have a different question. Where should I raise my issues? ####
 
 1. You can raise issues directly at the [Issues section](https://github.com/PayHereDevs/payhere-mobilesdk-flutter/issues) for the SDK's GitHub page.
 2. You can contact a PayHere Developer for technical support by mailing your issue and relevant code/screenshots to [techsupport@payhere.lk](mailto:techsupport@payhere.lk)
+
+#### Does this package support Flutter Null Safety?
+
+Yes! Version 1.0.3 and up opts into Flutter Null Safety. 
+
+If you are creating a new Flutter project, you will experience no issues. If you have project that you are planning to upgrade to Flutter 2 / migrate to Flutter Null Safety, there are no changes to be done in code other than increasing the PayHere Flutter SDK version to ^1.0.3.

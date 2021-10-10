@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:payhere_mobilesdk_flutter/payhere_mobilesdk_flutter.dart';
 
 void main() {
-
   // MaterialApp is being initialized like this,
   // instead of it being inside a separate class due
   // to a context issue when showing AlertDialog(s) later
@@ -31,11 +30,13 @@ class _AppState extends State<App> {
     // initPlatformState();
   }
 
-  void showAlert(BuildContext context, String title, String msg){
+  void showAlert(BuildContext context, String title, String msg) {
     // set up the button
     Widget okButton = TextButton(
       child: Text("OK"),
-      onPressed: () { Navigator.pop(context); },
+      onPressed: () {
+        Navigator.pop(context);
+      },
     );
 
     // set up the AlertDialog
@@ -56,10 +57,10 @@ class _AppState extends State<App> {
     );
   }
 
-  void startOneTimePayment(BuildContext context) async{
+  void startOneTimePayment(BuildContext context) async {
     Map paymentObject = {
-      "sandbox": true,                 // true if using Sandbox Merchant ID
-      "merchant_id": "1211149",        // Replace your Merchant ID
+      "sandbox": true, // true if using Sandbox Merchant ID
+      "merchant_id": "1211149", // Replace your Merchant ID
       "merchant_secret": "4uS83EVTOml4DxK0pruz0K8MPXVBpMuLE8m4bfpiWHBf",
       "notify_url": "https://ent13zfovoz7d.x.pipedream.net/",
       "order_id": "ItemNo12345",
@@ -80,31 +81,29 @@ class _AppState extends State<App> {
       "custom_2": ""
     };
 
-    PayHere.startPayment(
-      paymentObject, (paymentId) {
-        print("One Time Payment Success. Payment Id: $paymentId");
-        showAlert(context, "Payment Success!", "Payment Id: $paymentId");
-      }, (error) { 
-        print("One Time Payment Failed. Error: $error");
-        showAlert(context, "Payment Failed", "$error");
-      }, () { 
-        print("One Time Payment Dismissed");
-        showAlert(context, "Payment Dismissed", "");
-      }
-    );
+    await PayHere.startPayment(paymentObject, (paymentId) {
+      print("One Time Payment Success. Payment Id: $paymentId");
+      showAlert(context, "Payment Success!", "Payment Id: $paymentId");
+    }, (error) {
+      print("One Time Payment Failed. Error: $error");
+      showAlert(context, "Payment Failed", "$error");
+    }, () {
+      print("One Time Payment Dismissed");
+      showAlert(context, "Payment Dismissed", "");
+    });
   }
 
-  void startRecurringPayment(BuildContext context) async{
+  void startRecurringPayment(BuildContext context) async {
     Map paymentObject = {
-      "sandbox": true,                 // true if using Sandbox Merchant ID
-      "merchant_id": "1211149",        // Replace your Merchant ID
+      "sandbox": true, // true if using Sandbox Merchant ID
+      "merchant_id": "1211149", // Replace your Merchant ID
       "merchant_secret": "4uS83EVTOml4DxK0pruz0K8MPXVBpMuLE8m4bfpiWHBf",
       "notify_url": "https://ent13zfovoz7d.x.pipedream.net/",
       "order_id": "ItemNo12345",
       "items": "Hello from Flutter!",
       "amount": "50.00",
-      "recurrence": "1 Month",         // Recurring payment frequency
-      "duration": "1 Year",            // Recurring payment duration
+      "recurrence": "1 Month", // Recurring payment frequency
+      "duration": "1 Year", // Recurring payment duration
       "currency": "LKR",
       "first_name": "Saman",
       "last_name": "Perera",
@@ -120,25 +119,23 @@ class _AppState extends State<App> {
       "custom_2": ""
     };
 
-    PayHere.startPayment(
-      paymentObject, (paymentId) {
-        print("Recurring Payment Success. Payment Id: $paymentId");
-        showAlert(context, "Payment Success!", "Payment Id: $paymentId");
-      }, (error) { 
-        print("Recurring Payment Failed. Error: $error");
-        showAlert(context, "Payment Failed", "$error");
-      }, () { 
-        print("Recurring Payment Dismissed");
-        showAlert(context, "Payment Dismissed", "");
-      }
-    );
+    await PayHere.startPayment(paymentObject, (paymentId) {
+      print("Recurring Payment Success. Payment Id: $paymentId");
+      showAlert(context, "Payment Success!", "Payment Id: $paymentId");
+    }, (error) {
+      print("Recurring Payment Failed. Error: $error");
+      showAlert(context, "Payment Failed", "$error");
+    }, () {
+      print("Recurring Payment Dismissed");
+      showAlert(context, "Payment Dismissed", "");
+    });
   }
 
-  void startTokenizationPayment(BuildContext context) async{
+  void startTokenizationPayment(BuildContext context) async {
     Map paymentObject = {
-      "sandbox": true,                 // true if using Sandbox Merchant ID
-      "preapprove": true,              // Required
-      "merchant_id": "1211149",        // Replace your Merchant ID
+      "sandbox": true, // true if using Sandbox Merchant ID
+      "preapprove": true, // Required
+      "merchant_id": "1211149", // Replace your Merchant ID
       "merchant_secret": "4uS83EVTOml4DxK0pruz0K8MPXVBpMuLE8m4bfpiWHBf",
       "notify_url": "https://ent13zfovoz7d.x.pipedream.net/",
       "order_id": "ItemNo12345",
@@ -153,18 +150,16 @@ class _AppState extends State<App> {
       "country": "Sri Lanka",
     };
 
-    PayHere.startPayment(
-      paymentObject, (paymentId) {
-        print("Tokenization Payment Success. Payment Id: $paymentId");
-        showAlert(context, "Payment Success!", "Payment Id: $paymentId");
-      }, (error) { 
-        print("Tokenization Payment Failed. Error: $error");
-        showAlert(context, "Payment Failed", "$error");
-      }, () { 
-        print("Tokenization Payment Dismissed");
-        showAlert(context, "Payment Dismissed", "");
-      }
-    );
+    await PayHere.startPayment(paymentObject, (paymentId) {
+      print("Tokenization Payment Success. Payment Id: $paymentId");
+      showAlert(context, "Payment Success!", "Payment Id: $paymentId");
+    }, (error) {
+      print("Tokenization Payment Failed. Error: $error");
+      showAlert(context, "Payment Failed", "$error");
+    }, () {
+      print("Tokenization Payment Dismissed");
+      showAlert(context, "Payment Dismissed", "");
+    });
   }
 
   @override
@@ -178,14 +173,20 @@ class _AppState extends State<App> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             TextButton(
-              onPressed: () { startOneTimePayment(context); },
-              child: Text('Start One Time Payment!')),
+                onPressed: () {
+                  startOneTimePayment(context);
+                },
+                child: Text('Start One Time Payment!')),
             TextButton(
-              onPressed: () { startRecurringPayment(context); },
-              child: Text('Start Recurring Payment!')),
+                onPressed: () {
+                  startRecurringPayment(context);
+                },
+                child: Text('Start Recurring Payment!')),
             TextButton(
-              onPressed: () { startTokenizationPayment(context); },
-              child: Text('Start Tokenization Payment!')),
+                onPressed: () {
+                  startTokenizationPayment(context);
+                },
+                child: Text('Start Tokenization Payment!')),
           ],
         ),
       ),

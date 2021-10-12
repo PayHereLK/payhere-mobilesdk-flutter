@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:payhere_mobilesdk_flutter/payhere_mobilesdk_flutter.dart';
+import 'package:flutter_payhere/flutter_payhere.dart';
 
 void main() {
   // MaterialApp is being initialized like this,

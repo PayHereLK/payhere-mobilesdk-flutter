@@ -1,6 +1,8 @@
-# Flutter SDK
+# Flutter PayHere
+### Flutter Wrapper for PayHere SDKs ###
 
-Integrating PayHere with your Flutter App is super easy with our PayHere Flutter SDK. You just have to include the package in your project dependencies, call its methods to initiate a payment and fetch the payment status just after the payment. The beauty is, this SDK allows you to accept a payment within your app, without redirecting your app user to the web browser.
+Integrating PayHere with your Flutter App is super easy with Flutter PayHere. You just have to include the package in your project dependencies, call its methods to initiate a payment and fetch the payment status just after the payment. For mobile, this package allows you to accept a payment within your app, without redirecting your app user to the web browser.
+For web this package allows a popup to open, which can handle a payment.
 
 ## Usage ##
 
@@ -8,8 +10,10 @@ Integrating PayHere with your Flutter App is super easy with our PayHere Flutter
 
 Open your Flutter project's `pubspec.yaml` file and add the PayHere Flutter SDK dependency.
 ```yaml
-dependencies:
-  payhere_mobilesdk_flutter: ^1.0.4
+  flutter_payhere:
+    git:
+      url: git://github.com/iwalpola/flutter_payhere.git
+      path: flutter_payhere
 ```
 
 Then run the following commands in your Flutter project directory.
@@ -58,7 +62,22 @@ Run the following command in your iOS Project.
 pod install
 ```
 
-### 4. Whitelist Mobile App Package Name ###
+### 4. Web Pre-requisites ###
+a. Copy payhere.js and payhere_flutter.js from [this folder](https://github.com/iwalpola/flutter_payhere/tree/master/multiplatform_example/web) to {your project}/web
+b. Add the following lines at the end of {your project}/web/index.html
+```
+ </script>
+  <script src="payhere.js"></script>
+  <script src="payhere_flutter.js"></script>
+</body>
+</html>
+```
+c. Change the base_href property in the same index.html file
+```
+  <base href="/">
+```
+
+### 5. Whitelist Mobile App Package Name ###
 
 a. Login to your PayHere Merchant Account and navigate to Settings  > Domains and Credentials.
 
@@ -83,7 +102,7 @@ f. Click 'Request to Approve'.
 Creates a one-time payment request charged only once. To capture the payment details from your server, [read our docs](https://support.payhere.lk/api-&-mobile-sdk/payhere-checkout#2-listening-to-payment-notification).
 
 ```dart
-import 'package:payhere_mobilesdk_flutter/payhere_mobilesdk_flutter.dart';
+import 'package:flutter_payhere/flutter_payhere.dart';
 
 Map paymentObject = {
   "sandbox": true,                 // true if using Sandbox Merchant ID
@@ -126,7 +145,7 @@ Creates a subscription payment that is charged at a fixed frequency. To capture 
 Read more about Recurring Payments [in our docs](https://support.payhere.lk/faq/recurring-billing).
 
 ```dart
-import 'package:payhere_mobilesdk_flutter/payhere_mobilesdk_flutter.dart';
+import 'package:flutter_payhere/flutter_payhere.dart';
 
 Map paymentObject = {
   "sandbox": true,                 // true if using Sandbox Merchant ID
@@ -171,7 +190,7 @@ Tokenize customer card details for later usage with the [PayHere Charging API](h
 Read more about Automated Charging [in our docs](https://support.payhere.lk/faq/automated-charging).  
 
 ```dart
-import 'package:payhere_mobilesdk_flutter/payhere_mobilesdk_flutter.dart';
+import 'package:flutter_payhere/flutter_payhere.dart';
 
 Map paymentObject = {
   "sandbox": true,                 // true if using Sandbox Merchant ID

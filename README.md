@@ -9,7 +9,7 @@ Integrating PayHere with your Flutter App is super easy with our PayHere Flutter
 Open your Flutter project's `pubspec.yaml` file and add the PayHere Flutter SDK dependency.
 ```yaml
 dependencies:
-  payhere_mobilesdk_flutter: ^1.0.4
+  payhere_mobilesdk_flutter: ^1.1.0
 ```
 
 Then run the following commands in your Flutter project directory.
@@ -254,6 +254,23 @@ Each payment request type (one-time/recurring/pre-approval) sends a different pa
 PayHere Flutter Native SDK versions prior to 1.0.2 (1.0.1 and previous versions) depended on an older version of the PayHere Android SDK which is no longer available through the bintray.com Maven repository. Update to the latest version 1.0.2 and try again.
 
 If you are still experiencing issues, make sure you have followed the new "2. Android Pre-requisites" section with updated instructions for SDK versions 1.0.2 and above.
+
+#### I am getting a runtime error in iOS saying, "PayHere Bundle could not be found!"
+
+Since SDK version 1.1.0, the internal PayHere iOS SDK uses Resource Bundles. This means that you cannot use Dynamic Frameworks in your iOS project. 
+
+To fix the issue, open the "./ios/Podfile" file. Find the line that says "use_frameworks!" and add a "#" symbol infront of this line to comment it. The final result should look something like as shown below.
+
+```ruby
+target 'Runner' do
+  # use_frameworks!
+  use_modular_headers!
+
+  flutter_install_all_ios_pods File.dirname(File.realpath(__FILE__))
+end
+```
+
+__Clean and re-build your project and the issue should be resolved.__
 
 #### I have a different question. Where should I raise my issues? ####
 

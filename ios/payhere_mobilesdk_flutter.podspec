@@ -4,10 +4,10 @@
 #
 Pod::Spec.new do |s|
   s.name             = 'payhere_mobilesdk_flutter'
-  s.version          = '1.0.4'
+  s.version          = '1.1.0'
   s.summary          = 'Make PayHere payments with your Flutter App!'
   s.description      = <<-DESC
-Make PayHere payments with your Flutter App!
+Make Onetime, Subscription and Pre-approval payments with your Flutter Mobile App through PayHere! 
                        DESC
   s.homepage         = 'http://payhere.lk'
   s.license          = { :file => '../LICENSE' }
@@ -21,5 +21,5 @@ Make PayHere payments with your Flutter App!
   s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES', 'VALID_ARCHS[sdk=iphonesimulator*]' => 'x86_64' }
   s.swift_version = '5.0'
 
-  s.dependency "payHereSDK", '= 2.1.2'
+  s.dependency "payHereSDK", '= 2.2.2'
 end

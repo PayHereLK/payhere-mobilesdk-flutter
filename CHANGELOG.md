@@ -17,3 +17,7 @@ Opting into Flutter Null Safety
 ## 1.0.4
 
 Updated Native SDKs to latest versions
+
+## 1.1.0
+
+Update iOS SDK to support Resource Bundles. Added more documentation.

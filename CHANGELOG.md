@@ -21,3 +21,7 @@ Updated Native SDKs to latest versions
 ## 1.1.0
 
 Update iOS SDK to support Resource Bundles. Added more documentation.
+
+## 1.2.0
+
+Removes support for Resource Bundles (as in 1.0.4). Uses latest version of iOS SDK.

@@ -267,7 +267,7 @@ Map paymentObject = {
   "item_name_2": "Test Item #2",        
   "amount_2": "20.00",                  
   "quantity_2": "1",                    
-  
+
   "amount": 50.00,
   "currency": "LKR",
   "first_name": "Saman",
@@ -320,17 +320,12 @@ PayHere.startPayment(
 );
 ```
 
-- `paymentObject` - _Object_
-The payment parameters as a Map<String, dynamic>.
-
-- `onCompletedHandler` - _Function_
-Called with the PayHere Payment ID (_String_) as a parameter, for succesful payments.
-
-- `onErrorHandler` - _Function_
-Called with the Error (_String_) as a parameter, when an error occurs.
-
-- `onDismissedHandler` - _Function_
-Called with no parameters, when the payment popup is closed before payments are processed.
+|Parameter|Type|Description|
+|----|----|----------|
+|`paymentObject`|_Object_|The payment parameters as a Map<String, dynamic>.|
+|`onCompletedHandler`|_Function_|Called with the PayHere Payment ID (_String_) as a parameter, for succesful payments.|
+|`onErrorHandler`|_Function_|Called with the Error (_String_) as a parameter, when an error occurs.|
+|`onDismissedHandler`|_Function_|Called with no parameters, when the payment popup is closed before payments are processed.|
 
 #### How to get payment details such as payment method, status, card holder etc.?
 

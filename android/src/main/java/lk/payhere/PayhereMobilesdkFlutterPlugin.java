@@ -274,13 +274,29 @@ public class PayhereMobilesdkFlutterPlugin implements FlutterPlugin, MethodCallH
         String msg;
         if (response != null) {
           handled = true;
-          if (response.isSuccess()) {
-            msg = "Activity result:" + response.getData().toString();
-            String paymentNo = Long.toString(response.getData().getPaymentNo());
-            this.sendCompleted(paymentNo);
-          } else {
-            msg = "Result:" + response.toString();
-            this.sendError(response.getData().getMessage());
+          msg = "Response: " + response.toString();
+
+          if (response.getData() == null){
+            if (response.isSuccess()){
+              this.sendError("Internal Error. Could not map success response.");
+            }
+            else{
+              this.handleAsError(response);
+            }
+          }
+          else{
+            StatusResponse status = response.getData();
+            if (status.getStatus() == StatusResponse.Status.SUCCESS.value() ||
+                status.getStatus() == StatusResponse.Status.HOLD.value()){
+
+              msg = "Activity result:" + response.getData().toString();
+              String paymentNo = Long.toString(response.getData().getPaymentNo());
+              this.sendCompleted(paymentNo);
+
+            }
+            else{
+              this.handleAsError(response);
+            }
           }
         }
         else
@@ -301,6 +317,20 @@ public class PayhereMobilesdkFlutterPlugin implements FlutterPlugin, MethodCallH
       }
     }
     return handled;
+  }
+
+  private void handleAsError(PHResponse<StatusResponse> response){
+    if (response.getData() == null){
+      this.sendError("Unknown Error Occurred. PayHere Response was null.");
+    }
+    else{
+      if (response.getData().getMessage() == null){
+        this.sendError("Unknown Error Occurred.");
+      }
+      else{
+        this.sendError(response.getData().getMessage());
+      }
+    }
   }
 
   @Override

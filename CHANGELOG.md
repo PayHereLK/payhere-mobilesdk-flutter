@@ -29,3 +29,11 @@ Removes support for Resource Bundles (as in 1.0.4). Uses latest version of iOS S
 ## 1.2.1
 
 Fix iOS Dark Mode issues when building with Xcode 13
+
+## 2.0.0
+
+Added support for PayHere Hold-on-Card
+Added support for passing line-item details
+Fixed issues with USD currencies on iOS
+Added suppor for passing both String and Double values for amounts.
+Updated to the latest iOS and Android native SDKs.

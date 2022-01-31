@@ -179,6 +179,12 @@ public class SwiftPayhereMobilesdkFlutterPlugin: NSObject, FlutterPlugin {
       }
     }
     
+    if let authorizeStatus = obj[k.authorize] as? Bool{
+      if (authorizeStatus){
+        return self.createAuthorizeRequest(obj, &errorString)
+      }
+    }
+    
     if let recurrence = obj[k.recurrence] as? String, let duration = obj[k.duration] as? String{
       if (!recurrence.isEmpty && !duration.isEmpty){
         return self.createRecurringRequest(obj, &errorString)
@@ -452,7 +458,9 @@ public class SwiftPayhereMobilesdkFlutterPlugin: NSObject, FlutterPlugin {
     
     typealias k = PaymentObjectKey
     
-    let item = Item(id: nil, name: parse(o[k.items]), quantity: 1, amount: nil)
+    // let item = Item(id: nil, name: parse(o[k.items]), quantity: 1, amount: nil)
+    let itemsArr = parseItems(o, &errorString)
+    guard errorString == nil else { return nil }
     
     let request = PHInitialRequest(
       merchantID:         parse(o[k.merchantId]),
@@ -466,10 +474,44 @@ public class SwiftPayhereMobilesdkFlutterPlugin: NSObject, FlutterPlugin {
       country:            parse(o[k.country]),
       orderID:            parse(o[k.orderId]),
       itemsDescription:   parse(o[k.items]),
-      itemsMap:           [item],
+      itemsMap:           itemsArr,
       currency:           parseCurrency(o[k.currency]),
       custom1:            parse(o[k.customOne]),
       custom2:            parse(o[k.customTwo])
+    )
+    
+    return request
+  }
+  
+  private func createAuthorizeRequest(_ o: [String: Any], _ errorString: inout String?) -> PHInitialRequest?{
+    
+    typealias k = PaymentObjectKey
+    
+    // let item = Item(id: nil, name: parse(o[k.items]), quantity: 1, amount: nil)
+    let itemsArr = parseItems(o, &errorString)
+    guard errorString == nil else { return nil }
+    
+    let request = PHInitialRequest(
+      merchantID:         parse(o[k.merchantId]),
+      notifyURL:          parse(o[k.notifyUrl]),
+      firstName:          parse(o[k.firstName]),
+      lastName:           parse(o[k.lastName]),
+      email:              parse(o[k.email]),
+      phone:              parse(o[k.phone]),
+      address:            parse(o[k.address]),
+      city:               parse(o[k.city]),
+      country:            parse(o[k.country]),
+      orderID:            parse(o[k.orderId]),
+      itemsDescription:   parse(o[k.items]),
+      itemsMap:           itemsArr,
+      currency:           parseCurrency(o[k.currency]),
+      amount:             parseAmount(o[k.amount]),
+      deliveryAddress:    parse(o[k.deliveryAddress]),
+      deliveryCity:       parse(o[k.deliveryCity]),
+      deliveryCountry:    parse(o[k.deliveryCountry]),
+      custom1:            parse(o[k.customOne]),
+      custom2:            parse(o[k.customTwo]),
+      isHoldOnCardEnabled: true
     )
     
     return request
@@ -512,27 +554,41 @@ extension SwiftPayhereMobilesdkFlutterPlugin : PHViewControllerDelegate{
   }
   
   public func onResponseReceived(response: PHResponse<Any>?) {
-    if(response?.isSuccess() ?? false){
-      guard let resp = response?.getData() as? StatusResponse else{
-        sendError("Internal Error: Could not map success response")
-        return
-      }
-      
-      var paymentNo = "0"
-      if ((resp.paymentNo ?? 0.0)?.truncatingRemainder(dividingBy: 1.0) == 0){
-        paymentNo = String(format: "%.0f", resp.paymentNo ?? 0.0)
-      }
-      
-      sendCompleted(data: paymentNo)
-    }
-    else{
-      // Payment Failed
-      if let msg = response?.getMessage(){
-        sendError("Payment Error: \"" + msg + "\"")
+    
+    if let statusResponse = response?.getData() as? StatusResponse{
+      if let status = statusResponse.status,
+         status == StatusResponse.Status.SUCCESS.rawValue ||
+          status == StatusResponse.Status.AUTHORIZED.rawValue{
+        
+        var paymentNo = "0"
+        if ((statusResponse.paymentNo ?? 0.0)?.truncatingRemainder(dividingBy: 1.0) == 0){
+          paymentNo = String(format: "%.0f", statusResponse.paymentNo ?? 0.0)
+        }
+        
+        sendCompleted(data: paymentNo)
       }
       else{
-        sendError("Unknown Payment Error")
+        // Payment Failed
+        handleAsError(response)
       }
+    }
+    else{
+      if (response?.isSuccess() ?? false){
+        sendError("Internal Error: Could not map success response")
+      }
+      else{
+        // Payment Failed
+        handleAsError(response)
+      }
+    }
+  }
+  
+  private func handleAsError(_ response: PHResponse<Any>?){
+    if let msg = response?.getMessage(){
+      sendError("Payment Error: \"" + msg + "\"")
+    }
+    else{
+      sendError("Unknown Payment Error")
     }
   }
 }

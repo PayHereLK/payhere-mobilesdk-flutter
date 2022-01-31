@@ -61,11 +61,18 @@ class _AppState extends State<App> {
     Map paymentObject = {
       "sandbox": true, // true if using Sandbox Merchant ID
       "merchant_id": "1211149", // Replace your Merchant ID
-      "merchant_secret": "4uS83EVTOml4DxK0pruz0K8MPXVBpMuLE8m4bfpiWHBf",
       "notify_url": "https://ent13zfovoz7d.x.pipedream.net/",
       "order_id": "ItemNo12345",
       "items": "Hello from Flutter!",
-      "amount": "50.00",
+      "item_number_1": "001",
+      "item_name_1": "Test Item #1",
+      "amount_1": "15.00",
+      "quantity_1": "2",
+      "item_number_2": "002",
+      "item_name_2": "Test Item #2",
+      "amount_2": "20.00",
+      "quantity_2": "1",
+      "amount": 50.00,
       "currency": "LKR",
       "first_name": "Saman",
       "last_name": "Perera",
@@ -97,11 +104,18 @@ class _AppState extends State<App> {
     Map paymentObject = {
       "sandbox": true, // true if using Sandbox Merchant ID
       "merchant_id": "1211149", // Replace your Merchant ID
-      "merchant_secret": "4uS83EVTOml4DxK0pruz0K8MPXVBpMuLE8m4bfpiWHBf",
       "notify_url": "https://ent13zfovoz7d.x.pipedream.net/",
       "order_id": "ItemNo12345",
       "items": "Hello from Flutter!",
-      "amount": "50.00",
+      "item_number_1": "001",
+      "item_name_1": "Test Item #1",
+      "amount_1": 50.00,
+      "quantity_1": "1",
+      "item_number_2": "002",
+      "item_name_2": "Test Item #1",
+      "amount_2": "25.00",
+      "quantity_2": "2",
+      "amount": 100.00,
       "recurrence": "1 Month", // Recurring payment frequency
       "duration": "1 Year", // Recurring payment duration
       "currency": "LKR",
@@ -136,7 +150,6 @@ class _AppState extends State<App> {
       "sandbox": true, // true if using Sandbox Merchant ID
       "preapprove": true, // Required
       "merchant_id": "1211149", // Replace your Merchant ID
-      "merchant_secret": "4uS83EVTOml4DxK0pruz0K8MPXVBpMuLE8m4bfpiWHBf",
       "notify_url": "https://ent13zfovoz7d.x.pipedream.net/",
       "order_id": "ItemNo12345",
       "items": "Hello from Flutter!",
@@ -158,6 +171,45 @@ class _AppState extends State<App> {
       showAlert(context, "Payment Failed", "$error");
     }, () {
       print("Tokenization Payment Dismissed");
+      showAlert(context, "Payment Dismissed", "");
+    });
+  }
+
+  void startHoldOnCardPayment(BuildContext context) async {
+    Map paymentObject = {
+      "sandbox": true, // true if using Sandbox Merchant ID
+      "authorize": true, // Required
+      "merchant_id": "1211149", // Replace your Merchant ID
+      "notify_url": "https://ent13zfovoz7d.x.pipedream.net/",
+      "order_id": "ItemNo12345",
+      "items": "Hello from Flutter!",
+      "currency": "LKR",
+      "item_number_1": "001",
+      "item_name_1": "Test Item #1",
+      "amount_1": "15.00",
+      "quantity_1": "2",
+      "item_number_2": "002",
+      "item_name_2": "Test Item #2",
+      "amount_2": "20.00",
+      "quantity_2": "1",
+      "amount": "50.00",
+      "first_name": "Saman",
+      "last_name": "Perera",
+      "email": "samanp@gmail.com",
+      "phone": "0771234567",
+      "address": "No.1, Galle Road",
+      "city": "Colombo",
+      "country": "Sri Lanka",
+    };
+
+    PayHere.startPayment(paymentObject, (paymentId) {
+      print("Hold-on-Card Payment Success.");
+      showAlert(context, "Payment Success!", "");
+    }, (error) {
+      print("Hold-on-Card Payment Failed. Error: $error");
+      showAlert(context, "Payment Failed", "$error");
+    }, () {
+      print("Hold-on-Card Payment Dismissed");
       showAlert(context, "Payment Dismissed", "");
     });
   }
@@ -187,6 +239,11 @@ class _AppState extends State<App> {
                   startTokenizationPayment(context);
                 },
                 child: Text('Start Tokenization Payment!')),
+            TextButton(
+                onPressed: () {
+                  startHoldOnCardPayment(context);
+                },
+                child: Text('Start Hold on Card Payment!')),
           ],
         ),
       ),

@@ -47,7 +47,6 @@ public class PayhereMobilesdkFlutterPlugin implements FlutterPlugin, MethodCallH
   private static final class PaymentObjectKey{
     public final static String sandbox = "sandbox";
     public final static String merchantId = "merchant_id";
-    public final static String merchantSecret = "merchant_secret";
     public final static String notifyUrl = "notify_url";
     public final static String orderId = "order_id";
     public final static String items = "items";
@@ -231,8 +230,12 @@ public class PayhereMobilesdkFlutterPlugin implements FlutterPlugin, MethodCallH
 
     this.lastResult = result;
 
-    if (paymentObject.containsKey(PaymentObjectKey.preapprove) && (boolean) paymentObject.get(PaymentObjectKey.preapprove))
+    if (paymentObject.containsKey(PaymentObjectKey.preapprove) && (boolean) paymentObject.get(PaymentObjectKey.preapprove)) {
       errorString = this.createAndLaunchPreapprovalRequest(paymentObject, attachedActivity);
+    }
+    else if (paymentObject.containsKey(PaymentObjectKey.authorize) && (boolean) paymentObject.get(PaymentObjectKey.authorize)){
+      errorString = this.createAndLaunchAuthorizationRequest(paymentObject, attachedActivity);
+    }
     else{
 
       // Check if request is a Subscription Payment
@@ -661,7 +664,6 @@ public class PayhereMobilesdkFlutterPlugin implements FlutterPlugin, MethodCallH
       InitRequest req = new InitRequest();
 
       req.setMerchantId(          this.extract(o,         PaymentObjectKey.merchantId));
-      req.setMerchantSecret(      this.extract(o,         PaymentObjectKey.merchantSecret));
       req.setNotifyUrl(           this.extract(o,         PaymentObjectKey.notifyUrl));
       req.setCurrency(            this.extract(o,         PaymentObjectKey.currency));
       req.setAmount(              this.extractAmount(o,   PaymentObjectKey.amount));
@@ -729,7 +731,6 @@ public class PayhereMobilesdkFlutterPlugin implements FlutterPlugin, MethodCallH
       InitRequest req = new InitRequest();
 
       req.setMerchantId(          this.extract(o,         PaymentObjectKey.merchantId));
-      req.setMerchantSecret(      this.extract(o,         PaymentObjectKey.merchantSecret));
       req.setNotifyUrl(           this.extract(o,         PaymentObjectKey.notifyUrl));
       req.setCurrency(            this.extract(o,         PaymentObjectKey.currency));
       req.setAmount(              this.extractAmount(o,   PaymentObjectKey.amount));
@@ -804,7 +805,6 @@ public class PayhereMobilesdkFlutterPlugin implements FlutterPlugin, MethodCallH
       InitPreapprovalRequest req = new InitPreapprovalRequest();
 
       req.setMerchantId(          this.extract(o,         PaymentObjectKey.merchantId));
-      req.setMerchantSecret(      this.extract(o,         PaymentObjectKey.merchantSecret));
       req.setNotifyUrl(           this.extract(o,         PaymentObjectKey.notifyUrl));
       req.setCurrency(            this.extract(o,         PaymentObjectKey.currency));
       req.setOrderId(             this.extract(o,         PaymentObjectKey.orderId));
@@ -847,6 +847,74 @@ public class PayhereMobilesdkFlutterPlugin implements FlutterPlugin, MethodCallH
         customerDeliveryAddress.setCountry(deliveryCountry);
 
       req.getItems().addAll(items);
+
+      Boolean isSandbox = this.extractBoolean(o,          PaymentObjectKey.sandbox);
+      this.launchRequest(req, attachedActivity, isSandbox);
+
+    }
+    catch(PayHereKeyExtractionException exc){
+      error = exc.toString();
+    }
+    catch(PayHereItemProcessingException exc){
+      error = exc.reason;
+    }
+
+    return error;
+  }
+
+  private String createAndLaunchAuthorizationRequest(HashMap<String, Object> o, Activity attachedActivity){
+    String error = null;
+
+    try {
+
+      ArrayList<Item> items = this.extractItems(o);
+      InitRequest req = new InitRequest();
+
+      req.setMerchantId(          this.extract(o,         PaymentObjectKey.merchantId));
+      req.setNotifyUrl(           this.extract(o,         PaymentObjectKey.notifyUrl));
+      req.setCurrency(            this.extract(o,         PaymentObjectKey.currency));
+      req.setAmount(              this.extractAmount(o,   PaymentObjectKey.amount));
+      req.setOrderId(             this.extract(o,         PaymentObjectKey.orderId));
+      req.setItemsDescription(    this.extract(o,         PaymentObjectKey.items));
+
+      String custom1 =            this.extractOptional(o, PaymentObjectKey.customOne);
+      String custom2 =            this.extractOptional(o, PaymentObjectKey.customTwo);
+
+      if (custom1 != null) {
+        req.setCustom1(custom1);
+      }
+
+      if (custom2 != null) {
+        req.setCustom2(custom2);
+      }
+
+      Customer customer = req.getCustomer();
+      customer.setFirstName(      this.extract(o,         PaymentObjectKey.firstName));
+      customer.setLastName(       this.extract(o,         PaymentObjectKey.lastName));
+      customer.setEmail(          this.extract(o,         PaymentObjectKey.email));
+      customer.setPhone(          this.extract(o,         PaymentObjectKey.phone));
+
+      Address customerAddress = customer.getAddress();
+      customerAddress.setAddress( this.extract(o,         PaymentObjectKey.address));
+      customerAddress.setCity(    this.extract(o,         PaymentObjectKey.city));
+      customerAddress.setCountry( this.extract(o,         PaymentObjectKey.country));
+
+      Address customerDeliveryAddress = customer.getDeliveryAddress();
+      String deliveryAddress =    this.extractOptional(o, PaymentObjectKey.deliveryAddress);
+      String deliveryCity =       this.extractOptional(o, PaymentObjectKey.deliveryCity);
+      String deliveryCountry =    this.extractOptional(o, PaymentObjectKey.deliveryCountry);
+
+      if (deliveryAddress != null)
+        customerDeliveryAddress.setAddress(deliveryAddress);
+
+      if (deliveryCity != null)
+        customerDeliveryAddress.setCity(deliveryCity);
+
+      if (deliveryCountry != null)
+        customerDeliveryAddress.setCountry(deliveryCountry);
+
+      req.getItems().addAll(items);
+      req.setHoldOnCardEnabled(true);
 
       Boolean isSandbox = this.extractBoolean(o,          PaymentObjectKey.sandbox);
       this.launchRequest(req, attachedActivity, isSandbox);

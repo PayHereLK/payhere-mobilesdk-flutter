@@ -235,7 +235,7 @@ PayHere.startPayment(paymentObject, (paymentId) {
 });
 ```
 
-### 6. Optionally, pass Item-wise Details ### 
+### 6. Optionally, pass Item-wise Details
 
 Starting with version `2.0.0` you can optionally pass the details of the line items in the order. These details will appear in the customer's invoice. Item-wise Details are supported in Onetime, Subscription and Authorization payment modes. It is not supported in Pre-approval payments.
 

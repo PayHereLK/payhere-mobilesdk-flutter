@@ -30,6 +30,11 @@ public class SwiftPayhereMobilesdkFlutterPlugin: NSObject, FlutterPlugin {
     static let duration = "duration"
     static let startupFee = "startup_fee"
     static let preapprove = "preapprove"
+    static let authorize = "authorize"
+    static let prefixItemNumber = "item_number_"
+    static let prefixItemName = "item_name_"
+    static let prefixItemAmount = "amount_"
+    static let prefixItemQuantity = "quantity_"
   }
   private enum ResultKey{
     static let success = "success"
@@ -40,6 +45,20 @@ public class SwiftPayhereMobilesdkFlutterPlugin: NSObject, FlutterPlugin {
     static let complete = "complete"
     static let dismiss = "dismiss"
     static let error = "error"
+  }
+  private enum ItemProcessingError: Error, CustomStringConvertible{
+    case cannotFindNumberAtEnd(_ key: String)
+    case cannotParseToNumber(_ key: String, _ v: String)
+    
+    var description: String{
+      switch(self){
+      case .cannotFindNumberAtEnd(let key):
+        return "Could not find a number at the end of key, '\(key)'. Expected for example, 'some_key_1'."
+        
+      case .cannotParseToNumber(let key, let value):
+        return "Could not parse value '\(value)' at the end of key '\(key)' to a number. Expected for example, 'some_key_1'."
+      }
+    }
   }
   
   public static func register(with registrar: FlutterPluginRegistrar) {
@@ -209,13 +228,30 @@ public class SwiftPayhereMobilesdkFlutterPlugin: NSObject, FlutterPlugin {
   }
   
   private func parseAmount(_ amount: Any?) -> Double?{
-    guard let str = amount as? String else{ return nil }
-    return Double(str)
+    if let str = amount as? String{
+      return Double(str)
+    }
+    else if let dbl = amount as? Double{
+      return dbl
+    }
+    else{
+      return nil
+    }
   }
   
   private func parse(_ val: Any?) -> String?{
     guard let valStr = val as? String else{ return nil }
     return valStr
+  }
+  
+  private func parseInteger(_ val: Any?) -> Int?{
+    if let str = parse(val){
+      return Int(str)
+    }
+    else if let number = val as? Int{
+      return number
+    }
+    return nil
   }
   
   private func parseRecurrence(_ val: Any?, _ error: inout String?) -> PHRecurrenceTime?{
@@ -272,13 +308,78 @@ public class SwiftPayhereMobilesdkFlutterPlugin: NSObject, FlutterPlugin {
     }
   }
   
+  private func parseItems(_ o: [String: Any], _ err: inout String?) -> [payHereSDK.Item]{
+    var itemMap: [Int: payHereSDK.Item] = [:]
+    
+    for (k, v) in o{
+      do{
+        if k.starts(with: PaymentObjectKey.prefixItemNumber){
+          let index = try getIndex(k)
+          let item = initOrGetItem(index: index, &itemMap)
+          item.id = parse(v)
+        }
+        else if k.starts(with: PaymentObjectKey.prefixItemName){
+          let index = try getIndex(k)
+          let item = initOrGetItem(index: index, &itemMap)
+          item.name = parse(v)
+        }
+        else if k.starts(with: PaymentObjectKey.prefixItemQuantity){
+          let index = try getIndex(k)
+          let item = initOrGetItem(index: index, &itemMap)
+          item.quantity = parseInteger(v)
+        }
+        else if k.starts(with: PaymentObjectKey.prefixItemAmount){
+          let index = try getIndex(k)
+          let item = initOrGetItem(index: index, &itemMap)
+          item.amount = parseAmount(v)
+        }
+      }
+      catch let error as ItemProcessingError {
+        err = error.description
+        break;
+      }
+      catch{
+        err = "Unknown error occurred while parsing items"
+      }
+    }
+    
+    return Array(itemMap.values)
+  }
+  
+  private func getIndex(_ key: String) throws -> Int{
+    let comps = key.components(separatedBy: "_")
+    
+    guard let valueAtEnd = comps.last else {
+      throw ItemProcessingError.cannotFindNumberAtEnd(key)
+    }
+    
+    guard let parsed = Int(valueAtEnd) else{
+      throw ItemProcessingError.cannotParseToNumber(key, valueAtEnd)
+    }
+    
+    return parsed
+  }
+  
+  private func initOrGetItem(index: Int, _ map: inout [Int: payHereSDK.Item]) -> payHereSDK.Item{
+    if let item = map[index]{
+      return item
+    }
+    else{
+      let newItem = payHereSDK.Item()
+      map[index] = newItem
+      return newItem
+    }
+  }
+  
   // MARK: END
   
   private func createCheckoutRequest(_ o: [String: Any], _ errorString: inout String?) -> PHInitialRequest?{
     
     typealias k = PaymentObjectKey
     
-    let item = Item(id: nil, name: parse(o[k.items]), quantity: 1, amount: parseAmount(o[k.amount]))
+    // let item = Item(id: nil, name: parse(o[k.items]), quantity: 1, amount: parseAmount(o[k.amount]))
+    let itemsArr = parseItems(o, &errorString)
+    guard errorString == nil else { return nil }
     
     let request = PHInitialRequest(
       merchantID:         parse(o[k.merchantId]),
@@ -292,7 +393,7 @@ public class SwiftPayhereMobilesdkFlutterPlugin: NSObject, FlutterPlugin {
       country:            parse(o[k.country]),
       orderID:            parse(o[k.orderId]),
       itemsDescription:   parse(o[k.items]),
-      itemsMap:           [item],
+      itemsMap:           itemsArr,
       currency:           parseCurrency(o[k.currency]),
       amount:             parseAmount(o[k.amount]),
       deliveryAddress:    parse(o[k.deliveryAddress]),
@@ -315,7 +416,9 @@ public class SwiftPayhereMobilesdkFlutterPlugin: NSObject, FlutterPlugin {
       return nil
     }
     
-    let item = Item(id: nil, name: parse(o[k.items]), quantity: 1, amount: parseAmount(o[k.amount]))
+    // let item = Item(id: nil, name: parse(o[k.items]), quantity: 1, amount: parseAmount(o[k.amount]))
+    let itemsArr = parseItems(o, &errorString)
+    guard errorString == nil else { return nil }
     
     let request = PHInitialRequest(
       merchantID:         parse(o[k.merchantId]),
@@ -329,7 +432,7 @@ public class SwiftPayhereMobilesdkFlutterPlugin: NSObject, FlutterPlugin {
       country:            parse(o[k.country]),
       orderID:            parse(o[k.orderId]),
       itemsDescription:   parse(o[k.items]),
-      itemsMap:           [item],
+      itemsMap:           itemsArr,
       currency:           parseCurrency(o[k.currency]),
       amount:             parseAmount(o[k.amount]),
       deliveryAddress:    parse(o[k.deliveryAddress]),

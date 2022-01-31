@@ -228,13 +228,10 @@ Map paymentObject = {
 
 PayHere.startPayment(paymentObject, (paymentId) {
   print("Hold-on-Card Payment Success.");
-  showAlert(context, "Payment Success!", "");
 }, (error) {
   print("Hold-on-Card Payment Failed. Error: $error");
-  showAlert(context, "Payment Failed", "$error");
 }, () {
   print("Hold-on-Card Payment Dismissed");
-  showAlert(context, "Payment Dismissed", "");
 });
 ```
 
@@ -261,6 +258,7 @@ Map paymentObject = {
   "notify_url": "https://ent13zfovoz7d.x.pipedream.net/",
   "order_id": "ItemNo12345",
   "items": "Hello from Flutter!",
+
   "item_number_1": "001",               // ** Item 1 **
   "item_name_1": "Test Item #1",        
   "amount_1": "15.00",                  
@@ -269,6 +267,7 @@ Map paymentObject = {
   "item_name_2": "Test Item #2",        
   "amount_2": "20.00",                  
   "quantity_2": "1",                    
+  
   "amount": 50.00,
   "currency": "LKR",
   "first_name": "Saman",
@@ -364,17 +363,17 @@ target 'Runner' do
 end
 ```
 
-__Clean and re-build your project and the issue should be resolved.__
+Clean and re-build your project and the issue should be resolved.
 
 #### Does this package support Flutter Null Safety?
 
 Yes! Version 1.0.3 and up opts into Flutter Null Safety. 
 
-If you are creating a new Flutter project, you will experience no issues. If you have project that you are planning to upgrade to Flutter 2 / migrate to Flutter Null Safety, there are no changes to be done in code other than increasing the PayHere Flutter SDK version to ^1.0.3.
+If you are creating a new Flutter project, you will experience no issues. If you have project that you are planning to upgrade to Flutter 2 / migrate to Flutter Null Safety, there are no changes to be done in code other than updating to the latest version.
 
 #### Can I pass details about each item in the Order?
 
-Yes! Starting from version `2.0.0`, the PayHere Flutter SDK supports Item-wise Parameters. Please read Section 6 above.
+Yes! Starting from version `2.0.0`, the PayHere Flutter SDK supports Item-wise Parameters. Please read [Section 6](https://github.com/PayHereLK/payhere-mobilesdk-flutter#6-optionally-pass-item-wise-details) above.
 
 #### Does this SDK support Payment Authorization (Hold on Card) and Capture?
 

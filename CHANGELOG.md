@@ -37,3 +37,9 @@ Added support for passing line-item details
 Fixed issues with USD currencies on iOS
 Added suppor for passing both String and Double values for amounts.
 Updated to the latest iOS and Android native SDKs.
+
+## 3.0.0
+
+Updated to the latest iOS and Android native SDKs.
+Revamped UI with bug fixes.
+Added support for dynamic payment methods.

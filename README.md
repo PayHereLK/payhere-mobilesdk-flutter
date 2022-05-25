@@ -1,4 +1,4 @@
-# Flutter SDK
+# PayHere Flutter SDK
 
 Integrating PayHere with your Flutter App is super easy with our PayHere Flutter SDK. You just have to include the package in your project dependencies, call its methods to initiate a payment and fetch the payment status just after the payment. The beauty is, this SDK allows you to accept a payment within your app, without redirecting your app user to the web browser.
 
@@ -9,7 +9,7 @@ Integrating PayHere with your Flutter App is super easy with our PayHere Flutter
 Open your Flutter project's `pubspec.yaml` file and add the PayHere Flutter SDK dependency.
 ```yaml
 dependencies:
-  payhere_mobilesdk_flutter: ^2.0.0
+  payhere_mobilesdk_flutter: ^3.0.0
 ```
 
 Then run the following commands in your Flutter project directory.
@@ -385,3 +385,7 @@ From there you must use the [PayHere Capture API](https://support.payhere.lk/api
 
 1. You can raise issues directly at the [Issues section](https://github.com/PayHereDevs/payhere-mobilesdk-flutter/issues) for the SDK's GitHub page.
 2. You can contact a PayHere Developer for technical support by mailing your issue and relevant code/screenshots to [techsupport@payhere.lk](mailto:techsupport@payhere.lk)
+
+<hr>
+
+<a style="font-size:9px" href="https://twitter.com/hashtag/gotagohome?lang=en" target="_blank">🇱🇰</small>

@@ -59,20 +59,20 @@ class _AppState extends State<App> {
 
   void startOneTimePayment(BuildContext context) async {
     Map paymentObject = {
-      "sandbox": true, // true if using Sandbox Merchant ID
-      "merchant_id": "1211149", // Replace your Merchant ID
+      "sandbox": false, // true if using Sandbox Merchant ID
+      "merchant_id": "210251", // Replace your Merchant ID
       "notify_url": "https://ent13zfovoz7d.x.pipedream.net/",
       "order_id": "ItemNo12345",
       "items": "Hello from Flutter!",
       "item_number_1": "001",
       "item_name_1": "Test Item #1",
-      "amount_1": "15.00",
+      "amount_1": "5.00",
       "quantity_1": "2",
       "item_number_2": "002",
       "item_name_2": "Test Item #2",
       "amount_2": "20.00",
       "quantity_2": "1",
-      "amount": 50.00,
+      "amount": 30.00,
       "currency": "LKR",
       "first_name": "Saman",
       "last_name": "Perera",
@@ -102,8 +102,8 @@ class _AppState extends State<App> {
 
   void startRecurringPayment(BuildContext context) async {
     Map paymentObject = {
-      "sandbox": true, // true if using Sandbox Merchant ID
-      "merchant_id": "1211149", // Replace your Merchant ID
+      "sandbox": false, // true if using Sandbox Merchant ID
+      "merchant_id": "210251", // Replace your Merchant ID
       "notify_url": "https://ent13zfovoz7d.x.pipedream.net/",
       "order_id": "ItemNo12345",
       "items": "Hello from Flutter!",
@@ -147,9 +147,9 @@ class _AppState extends State<App> {
 
   void startTokenizationPayment(BuildContext context) async {
     Map paymentObject = {
-      "sandbox": true, // true if using Sandbox Merchant ID
+      "sandbox": false, // true if using Sandbox Merchant ID
       "preapprove": true, // Required
-      "merchant_id": "1211149", // Replace your Merchant ID
+      "merchant_id": "210251", // Replace your Merchant ID
       "notify_url": "https://ent13zfovoz7d.x.pipedream.net/",
       "order_id": "ItemNo12345",
       "items": "Hello from Flutter!",
@@ -177,9 +177,9 @@ class _AppState extends State<App> {
 
   void startHoldOnCardPayment(BuildContext context) async {
     Map paymentObject = {
-      "sandbox": true, // true if using Sandbox Merchant ID
+      "sandbox": false, // true if using Sandbox Merchant ID
       "authorize": true, // Required
-      "merchant_id": "1211149", // Replace your Merchant ID
+      "merchant_id": "210251", // Replace your Merchant ID
       "notify_url": "https://ent13zfovoz7d.x.pipedream.net/",
       "order_id": "ItemNo12345",
       "items": "Hello from Flutter!",

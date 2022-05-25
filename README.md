@@ -385,3 +385,7 @@ From there you must use the [PayHere Capture API](https://support.payhere.lk/api
 
 1. You can raise issues directly at the [Issues section](https://github.com/PayHereDevs/payhere-mobilesdk-flutter/issues) for the SDK's GitHub page.
 2. You can contact a PayHere Developer for technical support by mailing your issue and relevant code/screenshots to [techsupport@payhere.lk](mailto:techsupport@payhere.lk)
+
+<hr>
+
+<a style="font-size:9px" href="https://twitter.com/hashtag/gotagohome?lang=en">🇱🇰</small>

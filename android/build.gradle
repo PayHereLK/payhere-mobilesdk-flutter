@@ -1,5 +1,5 @@
 group 'lk.payhere.payhere_mobilesdk_flutter'
-version '2.0'
+version '3.0'
 
 buildscript {
     repositories {
@@ -36,5 +36,5 @@ android {
 }
 
 dependencies {
-    implementation 'lk.payhere:androidsdk:2.1.0'
+    implementation 'lk.payhere:androidsdk:3.0.0'
 }

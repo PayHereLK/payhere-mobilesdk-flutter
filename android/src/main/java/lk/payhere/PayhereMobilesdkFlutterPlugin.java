@@ -196,7 +196,7 @@ public class PayhereMobilesdkFlutterPlugin implements FlutterPlugin, MethodCallH
 
   @Override
   public void onAttachedToEngine(@NonNull FlutterPluginBinding flutterPluginBinding) {
-    channel = new MethodChannel(flutterPluginBinding.getFlutterEngine().getDartExecutor(), "payhere_mobilesdk_flutter");
+    channel = new MethodChannel(flutterPluginBinding.getBinaryMessenger(), "payhere_mobilesdk_flutter");
     channel.setMethodCallHandler(this);
     // attachedContext = flutterPluginBinding.getApplicationContext();
   }
@@ -292,7 +292,6 @@ public class PayhereMobilesdkFlutterPlugin implements FlutterPlugin, MethodCallH
               msg = "Activity result:" + response.getData().toString();
               String paymentNo = Long.toString(response.getData().getPaymentNo());
               this.sendCompleted(paymentNo);
-
             }
             else{
               this.handleAsError(response);
@@ -307,10 +306,50 @@ public class PayhereMobilesdkFlutterPlugin implements FlutterPlugin, MethodCallH
       else if (resultCode == Activity.RESULT_CANCELED) {
         handled = true;
         if (response != null) {
-          if (response.toString().contains("User canceled the request"))
-            this.sendDismissed();
-          else
-            this.sendError(response.toString());
+          switch(response.getStatus()){
+            case PHResponse.STATUS_ERROR_CANCELED:
+                this.sendDismissed();
+                break;
+
+            case PHResponse.STATUS_ERROR_PAYMENT:
+                if (response.getData() != null){
+                    if (response.getData().getMessage() == null)
+                        this.sendError("Payment error occurred with Code 2");
+                    else
+                        this.sendError(response.getData().getMessage());
+                }
+                else{
+                    this.sendError("Payment error occurred with Code 1");  
+                }
+                
+                break;
+
+            case PHResponse.STATUS_ERROR_NETWORK:
+                this.sendError("Network Error");
+                break;
+
+            case PHResponse.STATUS_ERROR_VALIDATION:
+                this.sendError("Parameter Validation Error");
+                break;
+
+            case PHResponse.STATUS_ERROR_DATA:
+                this.sendError("Intent Data not Present");
+                break;
+
+            case PHResponse.STATUS_ERROR_UNKNOWN:
+            default:
+                // this.sendError("Unknown error occurred");
+                if (response.getData() != null){
+                    if (response.getData().getMessage() == null)
+                        this.sendError("Unknown error occurred with Code 2");
+                    else
+                        this.sendError(response.getData().getMessage());
+                }
+                else{
+                    this.sendError("Unknown error occurred with Code 1");  
+                }
+                break;
+          }
         }
         else
           this.sendDismissed();

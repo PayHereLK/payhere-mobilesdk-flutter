@@ -1,4 +1,4 @@
-package com.example.payhere_mobilesdk_flutter_example;
+package lk.payhere.demo;
 
 import io.flutter.embedding.android.FlutterActivity;
 

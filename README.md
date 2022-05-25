@@ -1,4 +1,4 @@
-# Flutter SDK
+# PayHere Flutter SDK
 
 Integrating PayHere with your Flutter App is super easy with our PayHere Flutter SDK. You just have to include the package in your project dependencies, call its methods to initiate a payment and fetch the payment status just after the payment. The beauty is, this SDK allows you to accept a payment within your app, without redirecting your app user to the web browser.
 
@@ -388,4 +388,4 @@ From there you must use the [PayHere Capture API](https://support.payhere.lk/api
 
 <hr>
 
-<a style="font-size:9px" href="https://twitter.com/hashtag/gotagohome?lang=en">🇱🇰</small>
+<a style="font-size:9px" href="https://twitter.com/hashtag/gotagohome?lang=en" target="_blank">🇱🇰</small>

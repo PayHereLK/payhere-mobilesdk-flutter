@@ -338,7 +338,6 @@ public class PayhereMobilesdkFlutterPlugin implements FlutterPlugin, MethodCallH
 
             case PHResponse.STATUS_ERROR_UNKNOWN:
             default:
-                // this.sendError("Unknown error occurred");
                 if (response.getData() != null){
                     if (response.getData().getMessage() == null)
                         this.sendError("Unknown error occurred with Code 2");

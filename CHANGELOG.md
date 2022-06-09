@@ -43,3 +43,7 @@ Updated to the latest iOS and Android native SDKs.
 Updated to the latest iOS and Android native SDKs.
 Revamped UI with bug fixes.
 Added support for dynamic payment methods.
+
+## 3.0.1
+
+Remove WebView caching in Android native SDKs.

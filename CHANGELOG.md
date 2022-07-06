@@ -47,3 +47,7 @@ Added support for dynamic payment methods.
 ## 3.0.1
 
 Remove WebView caching in Android native SDKs.
+
+## 3.0.2
+
+Added better error message support

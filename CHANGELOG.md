@@ -50,4 +50,8 @@ Remove WebView caching in Android native SDKs.
 
 ## 3.0.2
 
-Added better error message support
+Added better error message support.
+
+## 3.0.3
+
+Fix Frimi payment method related issues on iOS.

@@ -895,6 +895,13 @@ public class PayhereMobilesdkFlutterPlugin implements FlutterPlugin, MethodCallH
         req.setCustom2(custom2);
       }
 
+      try {
+        req.setAmount(            this.extractAmount(o,   PaymentObjectKey.amount));
+      }
+      catch(Exception e){
+        // ignore missing amount param for pre-approval request.
+      }
+
       Customer customer = req.getCustomer();
       customer.setFirstName(      this.extract(o,         PaymentObjectKey.firstName));
       customer.setLastName(       this.extract(o,         PaymentObjectKey.lastName));

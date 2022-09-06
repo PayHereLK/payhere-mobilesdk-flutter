@@ -9,7 +9,7 @@ Integrating PayHere with your Flutter App is super easy with our PayHere Flutter
 Open your Flutter project's `pubspec.yaml` file and add the PayHere Flutter SDK dependency.
 ```yaml
 dependencies:
-  payhere_mobilesdk_flutter: ^3.0.3
+  payhere_mobilesdk_flutter: ^3.0.4
 ```
 
 Then run the following commands in your Flutter project directory.
@@ -60,7 +60,7 @@ pod install
 
 ### 4. Whitelist Mobile App Package Name ###
 
-a. Login to your PayHere Merchant Account and navigate to Settings  > Domains and Credentials.
+a. Login to your PayHere Merchant Account and navigate to Integrations.
 
 b. Click the 'Add Domain/App' button.
 
@@ -168,6 +168,8 @@ Tokenize customer card details for later usage with the [PayHere Charging API](h
 
 Read more about Automated Charging [in our docs](https://support.payhere.lk/faq/automated-charging).  
 
+> __NOTE:__ Since version 3.0.4 you can pass an 'amount' parameter in the pre-approval request. If this is omitted the customer will only be pre-approved. If an amount is provided, it will be charged from the customer during pre-approval. In both scenarios a `customer_token` will still be generated.
+
 ```dart
 import 'package:payhere_mobilesdk_flutter/payhere_mobilesdk_flutter.dart';
 
@@ -186,6 +188,7 @@ Map paymentObject = {
   "address": "No.1, Galle Road",
   "city": "Colombo",
   "country": "Sri Lanka",
+  "amount": 30.00                   // Optional. An amount to pass while pre-approving.
 };
 
 PayHere.startPayment(

@@ -425,7 +425,6 @@ public class SwiftPayhereMobilesdkFlutterPlugin: NSObject, FlutterPlugin {
     // let item = Item(id: nil, name: parse(o[k.items]), quantity: 1, amount: parseAmount(o[k.amount]))
     let itemsArr = parseItems(o, &errorString)
     guard errorString == nil else { return nil }
-    
     let request = PHInitialRequest(
       merchantID:         parse(o[k.merchantId]),
       notifyURL:          parse(o[k.notifyUrl]),
@@ -461,6 +460,8 @@ public class SwiftPayhereMobilesdkFlutterPlugin: NSObject, FlutterPlugin {
     // let item = Item(id: nil, name: parse(o[k.items]), quantity: 1, amount: nil)
     let itemsArr = parseItems(o, &errorString)
     guard errorString == nil else { return nil }
+
+    let amount = parseAmount(o[k.amount]) ?? 0.0
     
     let request = PHInitialRequest(
       merchantID:         parse(o[k.merchantId]),
@@ -477,7 +478,8 @@ public class SwiftPayhereMobilesdkFlutterPlugin: NSObject, FlutterPlugin {
       itemsMap:           itemsArr,
       currency:           parseCurrency(o[k.currency]),
       custom1:            parse(o[k.customOne]),
-      custom2:            parse(o[k.customTwo])
+      custom2:            parse(o[k.customTwo]),
+      amount:             amount
     )
     
     return request

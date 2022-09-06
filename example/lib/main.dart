@@ -145,7 +145,7 @@ class _AppState extends State<App> {
     });
   }
 
-  void startTokenizationPayment(BuildContext context) async {
+  void startTokenizationPayment(BuildContext context, { bool setAmount = false }) async {
     Map paymentObject = {
       "sandbox": false, // true if using Sandbox Merchant ID
       "preapprove": true, // Required
@@ -162,6 +162,10 @@ class _AppState extends State<App> {
       "city": "Colombo",
       "country": "Sri Lanka",
     };
+
+    if (setAmount){
+      paymentObject['amount'] = '30.00';
+    }
 
     PayHere.startPayment(paymentObject, (paymentId) {
       print("Tokenization Payment Success. Payment Id: $paymentId");
@@ -239,6 +243,11 @@ class _AppState extends State<App> {
                   startTokenizationPayment(context);
                 },
                 child: Text('Start Tokenization Payment!')),
+            TextButton(
+                onPressed: () {
+                  startTokenizationPayment(context, setAmount: true);
+                },
+                child: Text('Start Tokenization Payment (with amount)!')),
             TextButton(
                 onPressed: () {
                   startHoldOnCardPayment(context);

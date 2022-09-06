@@ -55,3 +55,7 @@ Added better error message support.
 ## 3.0.3
 
 Fix Frimi payment method related issues on iOS.
+
+## 3.0.4
+
+Add support for passing amount during pre-approval payments.

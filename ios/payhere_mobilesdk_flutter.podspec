@@ -4,7 +4,7 @@
 #
 Pod::Spec.new do |s|
   s.name             = 'payhere_mobilesdk_flutter'
-  s.version          = '3.0.3'
+  s.version          = '3.0.4'
   s.summary          = 'Make PayHere payments with your Flutter App!'
   s.description      = <<-DESC
 Make Onetime, Subscription and Pre-approval payments with your Flutter Mobile App through PayHere! 

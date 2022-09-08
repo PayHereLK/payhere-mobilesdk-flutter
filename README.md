@@ -164,7 +164,7 @@ PayHere.startPayment(
 
 ##### c. Preapproval Request #####
 
-Tokenize customer card details for later usage with the [PayHere Charging API](https://support.payhere.lk/api-&-mobile-sdk/payhere-charging). To capture the payment details from your server, [read our docs](https://support.payhere.lk/api-&-mobile-sdk/preapproval-api#2-listening-to-preapproval-notification).
+Tokenize customer card details for later usage with the [PayHere Charging API](https://support.payhere.lk/api-&-mobile-sdk/charging-api). To capture the payment details from your server, [read our docs](https://support.payhere.lk/api-&-mobile-sdk/preapproval-api#2-listening-to-preapproval-notification).
 
 Read more about Automated Charging [in our docs](https://support.payhere.lk/automated-charging).  
 
@@ -204,7 +204,7 @@ PayHere.startPayment(
 
 ##### d. Hold-on-Card Request #####
 
-Authorize (hold) charges on a customer's card for later use with the [PayHere Capture API](https://support.payhere.lk/api-&-mobile-sdk/payhere-capture). To capture the payment hold details from your server, [read out docs](https://support.payhere.lk/api-&-mobile-sdk/authorize-api#2-listening-to-authorization-notification).
+Authorize (hold) charges on a customer's card for later use with the [PayHere Capture API](https://support.payhere.lk/api-&-mobile-sdk/capture-api). To capture the payment hold details from your server, [read out docs](https://support.payhere.lk/api-&-mobile-sdk/authorize-api#2-listening-to-authorization-notification).
 
 Read more about Hold-on-card [in our docs](https://support.payhere.lk/hold-on-card).  
 

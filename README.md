@@ -80,7 +80,7 @@ f. Click 'Request to Approve'.
 
 ##### a. One-time Payment Request #####
 
-Creates a one-time payment request charged only once. To capture the payment details from your server, [read our docs](https://support.payhere.lk/api-&-mobile-sdk/payhere-checkout#2-listening-to-payment-notification).
+Creates a one-time payment request charged only once. To capture the payment details from your server, [read our docs](https://support.payhere.lk/api-&-mobile-sdk/checkout-api#2-listening-to-payment-notification).
 
 ```dart
 import 'package:payhere_mobilesdk_flutter/payhere_mobilesdk_flutter.dart';
@@ -120,9 +120,9 @@ PayHere.startPayment(
 
 ##### b. Recurring Payment Request #####
 
-Creates a subscription payment that is charged at a fixed frequency. To capture the payment details from your server, [read our docs](https://support.payhere.lk/api-&-mobile-sdk/payhere-recurring#2-listening-to-payment-notification).
+Creates a subscription payment that is charged at a fixed frequency. To capture the payment details from your server, [read our docs](https://support.payhere.lk/api-&-mobile-sdk/recurring-api#2-listening-to-payment-notification).
 
-Read more about Recurring Payments [in our docs](https://support.payhere.lk/faq/recurring-billing).
+Read more about Recurring Payments [in our docs](https://support.payhere.lk/recurring-billing).
 
 ```dart
 import 'package:payhere_mobilesdk_flutter/payhere_mobilesdk_flutter.dart';
@@ -164,9 +164,9 @@ PayHere.startPayment(
 
 ##### c. Preapproval Request #####
 
-Tokenize customer card details for later usage with the [PayHere Charging API](https://support.payhere.lk/api-&-mobile-sdk/payhere-charging). To capture the payment details from your server, [read our docs](https://support.payhere.lk/api-&-mobile-sdk/payhere-preapproval#2-listening-to-payment-notification).
+Tokenize customer card details for later usage with the [PayHere Charging API](https://support.payhere.lk/api-&-mobile-sdk/payhere-charging). To capture the payment details from your server, [read our docs](https://support.payhere.lk/api-&-mobile-sdk/preapproval-api#2-listening-to-preapproval-notification).
 
-Read more about Automated Charging [in our docs](https://support.payhere.lk/faq/automated-charging).  
+Read more about Automated Charging [in our docs](https://support.payhere.lk/automated-charging).  
 
 > __NOTE:__ Since version 3.0.4 you can pass an 'amount' parameter in the pre-approval request. If this is omitted the customer will only be pre-approved. If an amount is provided, it will be charged from the customer during pre-approval. In both scenarios a `customer_token` will still be generated.
 
@@ -204,9 +204,9 @@ PayHere.startPayment(
 
 ##### d. Hold-on-Card Request #####
 
-Authorize (hold) charges on a customer's card for later use with the [PayHere Capture API](https://support.payhere.lk/api-&-mobile-sdk/payhere-capture). To capture the payment hold details from your server, [read out docs](https://support.payhere.lk/api-&-mobile-sdk/payhere-authorize#2-listening-to-authorization-notification).
+Authorize (hold) charges on a customer's card for later use with the [PayHere Capture API](https://support.payhere.lk/api-&-mobile-sdk/payhere-capture). To capture the payment hold details from your server, [read out docs](https://support.payhere.lk/api-&-mobile-sdk/authorize-api#2-listening-to-authorization-notification).
 
-Read more about Hold-on-card [in our docs](https://support.payhere.lk/faq/hold-on-card).  
+Read more about Hold-on-card [in our docs](https://support.payhere.lk/hold-on-card).  
 
 ```dart
 import 'package:payhere_mobilesdk_flutter/payhere_mobilesdk_flutter.dart';
@@ -341,10 +341,10 @@ You must setup a Server Endpoint that accepts the asynchronous PayHere Payment N
 
 Each payment request type (one-time/recurring/pre-approval) sends a different payment notification. Study the following sections for more information.
 
-- One-time Payment Details: [read docs](https://support.payhere.lk/api-&-mobile-sdk/payhere-checkout#2-listening-to-payment-notification)
-- Recurring Payment Details: [read docs](https://support.payhere.lk/api-&-mobile-sdk/payhere-recurring#2-listening-to-payment-notification)
-- Preapproval Details: [read docs](https://support.payhere.lk/api-&-mobile-sdk/payhere-preapproval#2-listening-to-preapproval-notification)
-- Authorization (Hold) Details: [read docs](https://support.payhere.lk/api-&-mobile-sdk/payhere-authorize#2-listening-to-authorization-notification)
+- One-time Payment Details: [read docs](https://support.payhere.lk/api-&-mobile-sdk/checkout-api#2-listening-to-payment-notification)
+- Recurring Payment Details: [read docs](https://support.payhere.lk/api-&-mobile-sdk/recurring-api#2-listening-to-payment-notification)
+- Preapproval Details: [read docs](https://support.payhere.lk/api-&-mobile-sdk/preapproval-api#2-listening-to-preapproval-notification)
+- Authorization (Hold) Details: [read docs](https://support.payhere.lk/api-&-mobile-sdk/authorize-api#2-listening-to-authorization-notification)
 
 #### I am getting an error saying, "Could not GET 'https://dl.bintray.com..." ####
 
@@ -382,13 +382,9 @@ Yes! Starting from version `2.0.0`, the PayHere Flutter SDK supports Item-wise P
 
 Yes and No. Starting from version `2.0.0` this SDK supports Authorization (also known as Hold on Card) requests. Authorizations generate an `authorization_token` which is sent as a POST request to your `notify_url`. 
 
-From there you must use the [PayHere Capture API](https://support.payhere.lk/api-&-mobile-sdk/payhere-capture) to use the genereated token and perform the capture. You can read more about the PayHere Hold on Card Feature by [reading our docs](https://support.payhere.lk/faq/hold-on-card).
+From there you must use the [PayHere Capture API](https://support.payhere.lk/api-&-mobile-sdk/capture-api) to use the genereated token and perform the capture. You can read more about the PayHere Hold on Card Feature by [reading our docs](https://support.payhere.lk/hold-on-card).
 
 #### I have a different question. Where should I raise my issues? ####
 
 1. You can raise issues directly at the [Issues section](https://github.com/PayHereDevs/payhere-mobilesdk-flutter/issues) for the SDK's GitHub page.
 2. You can contact a PayHere Developer for technical support by mailing your issue and relevant code/screenshots to [techsupport@payhere.lk](mailto:techsupport@payhere.lk)
-
-<hr>
-
-<a style="font-size:9px" href="https://twitter.com/hashtag/gotagohome?lang=en" target="_blank">🇱🇰</small>

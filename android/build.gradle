@@ -33,8 +33,15 @@ android {
     lintOptions {
         disable 'InvalidPackage'
     }
+
+    buildTypes{
+        release{
+            minifyEnabled true
+            consumerProguardFiles 'proguard-rules.txt'
+        }
+    }
 }
 
 dependencies {
-    implementation 'lk.payhere:androidsdk:3.0.4'
+    implementation 'lk.payhere:androidsdk:3.0.11'
 }

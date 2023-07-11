@@ -63,3 +63,7 @@ Add support for passing amount during pre-approval payments.
 ## 3.0.5
 
 Fixed issue with android release builds.
+
+## 3.0.6
+
+Change minimum flutter SDK version

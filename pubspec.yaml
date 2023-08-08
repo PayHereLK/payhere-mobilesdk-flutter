@@ -1,6 +1,6 @@
 name: payhere_mobilesdk_flutter
 description: Make Onetime, Subscription and Pre-approval payments with your Flutter Mobile App through PayHere!
-version: 3.0.6
+version: 3.0.7
 homepage: https://github.com/PayHereLK/payhere-mobilesdk-flutter
 
 environment:

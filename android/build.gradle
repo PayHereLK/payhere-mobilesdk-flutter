@@ -43,5 +43,5 @@ android {
 }
 
 dependencies {
-    implementation 'lk.payhere:androidsdk:3.0.11'
+    implementation 'lk.payhere:androidsdk:3.0.12'
 }

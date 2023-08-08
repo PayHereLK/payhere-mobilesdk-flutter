@@ -67,3 +67,7 @@ Fixed issue with android release builds.
 ## 3.0.6
 
 Change minimum flutter SDK version
+
+## 3.0.7
+
+Fixed black screen issue

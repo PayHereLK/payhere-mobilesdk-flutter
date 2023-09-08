@@ -71,3 +71,7 @@ Change minimum flutter SDK version
 ## 3.0.7
 
 Fixed black screen issue
+
+## 3.0.8
+
+Update support sdk version

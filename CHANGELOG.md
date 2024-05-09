@@ -75,3 +75,7 @@ Fixed black screen issue
 ## 3.0.8
 
 Update support sdk version
+
+## 3.0.9 
+
+Update support sdk version

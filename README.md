@@ -9,7 +9,7 @@ Integrating PayHere with your Flutter App is super easy with our PayHere Flutter
 Open your Flutter project's `pubspec.yaml` file and add the PayHere Flutter SDK dependency.
 ```yaml
 dependencies:
-  payhere_mobilesdk_flutter: ^3.0.8
+  payhere_mobilesdk_flutter: ^3.0.9
 ```
 
 Then run the following commands in your Flutter project directory.
@@ -29,7 +29,7 @@ allprojects {
     repositories {
         mavenLocal()
         maven {
-            url  "https://repo.repsy.io/mvn/payhere/payhere-mobilesdk-android/"
+            url 'https://jitpack.io' 
         }
     }
 }

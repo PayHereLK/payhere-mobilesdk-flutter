@@ -5,7 +5,7 @@ PODS:
     - ObjectMapper (~> 3.5.1)
   - Flutter (1.0.0)
   - ObjectMapper (3.5.3)
-  - payhere_mobilesdk_flutter (3.0.3):
+  - payhere_mobilesdk_flutter (3.0.6):
     - Flutter
     - payHereSDK (= 3.0.5)
   - payHereSDK (3.0.5):
@@ -39,10 +39,10 @@ SPEC CHECKSUMS:
   AlamofireObjectMapper: 74d1440c92c42bbcc2b5f4dc81654ac095ec669f
   Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
   ObjectMapper: 97111c97e054a6ee25917662106689f0b4127b37
-  payhere_mobilesdk_flutter: 270140bce58120b261e864cdc6ade022f73775c3
+  payhere_mobilesdk_flutter: 52ef97b1d4cda8f42bb6d31e0890c5e285c81b78
   payHereSDK: 4f21d4c3b9158247827277dea7de25da216e4541
   SDWebImage: 72f86271a6f3139cc7e4a89220946489d4b9a866
 
-PODFILE CHECKSUM: 466ff8d89a1dc635fb187df1bfd1905a4df4b787
+PODFILE CHECKSUM: 0275592d1faa11c763e10f88967ebca118c0e190
 
-COCOAPODS: 1.11.3
+COCOAPODS: 1.14.3

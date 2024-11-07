@@ -6,7 +6,7 @@ description: Demonstrates how to use the payhere_mobilesdk_flutter plugin.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
 environment:
-  sdk: ">=3.0.0 <=3.2.2"
+  sdk: ">=3.0.0 <=3.5.3"
 
 dependencies:
   flutter:

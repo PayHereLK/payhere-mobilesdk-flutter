@@ -27,6 +27,8 @@ rootProject.allprojects {
 apply plugin: 'com.android.library'
 
 android {
+    namespace 'lk.payhere.mobilesdk.payhere_mobilesdk_flutter'
+    
     compileSdkVersion 28
 
     defaultConfig {

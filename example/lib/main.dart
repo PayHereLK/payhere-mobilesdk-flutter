@@ -60,7 +60,7 @@ class _AppState extends State<App> {
   void startOneTimePayment(BuildContext context) async {
     Map paymentObject = {
       "sandbox": false, // true if using Sandbox Merchant ID
-      "merchant_id": "1225830", // Replace your Merchant ID
+      "merchant_id": "1223220", // Replace your Merchant ID
       "notify_url": "https://ent13zfovoz7d.x.pipedream.net/",
       "order_id": "ItemNo12345",
       "items": "Hello from Flutter!",
@@ -103,7 +103,7 @@ class _AppState extends State<App> {
   void startRecurringPayment(BuildContext context) async {
     Map paymentObject = {
       "sandbox": false, // true if using Sandbox Merchant ID
-      "merchant_id": "1225830", // Replace your Merchant ID
+      "merchant_id": "1223220", // Replace your Merchant ID
       "notify_url": "https://ent13zfovoz7d.x.pipedream.net/",
       "order_id": "ItemNo12345",
       "items": "Hello from Flutter!",
@@ -150,7 +150,7 @@ class _AppState extends State<App> {
     Map paymentObject = {
       "sandbox": false, // true if using Sandbox Merchant ID
       "preapprove": true, // Required
-      "merchant_id": "1225830", // Replace your Merchant ID
+      "merchant_id": "1223220", // Replace your Merchant ID
       "notify_url": "https://ent13zfovoz7d.x.pipedream.net/",
       "order_id": "ItemNo12345",
       "items": "Hello from Flutter!",
@@ -184,7 +184,7 @@ class _AppState extends State<App> {
     Map paymentObject = {
       "sandbox": false, // true if using Sandbox Merchant ID
       "authorize": true, // Required
-      "merchant_id": "1225830", // Replace your Merchant ID
+      "merchant_id": "1223220", // Replace your Merchant ID
       "notify_url": "https://ent13zfovoz7d.x.pipedream.net/",
       "order_id": "ItemNo12345",
       "items": "Hello from Flutter!",

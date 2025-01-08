@@ -87,3 +87,7 @@ Update support sdk version
 ## 3.0.11
 
 Update support sdk version
+
+## 3.0.12
+
+Update Android Sdk

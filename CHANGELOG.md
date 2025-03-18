@@ -91,3 +91,8 @@ Update support sdk version
 ## 3.0.12
 
 Update Android Sdk
+
+## 3.1.0
+
+Update Ios Sdk
+Update support sdk version

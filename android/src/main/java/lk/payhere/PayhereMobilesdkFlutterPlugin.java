@@ -23,7 +23,7 @@ import io.flutter.plugin.common.MethodChannel;
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler;
 import io.flutter.plugin.common.MethodChannel.Result;
 import io.flutter.plugin.common.PluginRegistry;
-import io.flutter.plugin.common.PluginRegistry.Registrar;
+// import io.flutter.plugin.common.PluginRegistry.Registrar;
 
 import lk.payhere.androidsdk.PHConfigs;
 import lk.payhere.androidsdk.PHConstants;
@@ -203,17 +203,17 @@ public class PayhereMobilesdkFlutterPlugin implements FlutterPlugin, MethodCallH
     // attachedContext = flutterPluginBinding.getApplicationContext();
   }
 
-  public static void registerWith(Registrar registrar) {
-    final MethodChannel channel = new MethodChannel(registrar.messenger(), "payhere_mobilesdk_flutter");
-    final PayhereMobilesdkFlutterPlugin plugin = new PayhereMobilesdkFlutterPlugin();
-    channel.setMethodCallHandler(plugin);
+  // public static void registerWith(Registrar registrar) {
+  //   final MethodChannel channel = new MethodChannel(registrar.messenger(), "payhere_mobilesdk_flutter");
+  //   final PayhereMobilesdkFlutterPlugin plugin = new PayhereMobilesdkFlutterPlugin();
+  //   channel.setMethodCallHandler(plugin);
 
-    // This is a fallback method.
-    // On newer Flutter versions, this method will not be called.
-    // In-order to ensure we listen to the activity result,
-    // we also listen to it in, 'onAttachedToActivity'
-    registrar.addActivityResultListener(plugin);
-  }
+  //   // This is a fallback method.
+  //   // On newer Flutter versions, this method will not be called.
+  //   // In-order to ensure we listen to the activity result,
+  //   // we also listen to it in, 'onAttachedToActivity'
+  //   registrar.addActivityResultListener(plugin);
+  // }
 
   @Override
   public void onMethodCall(@NonNull MethodCall call, @NonNull Result result) {

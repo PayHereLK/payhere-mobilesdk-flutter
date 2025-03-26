@@ -96,3 +96,7 @@ Update Android Sdk
 
 Update Ios Sdk
 Update support sdk version
+
+## 3.1.1
+
+Remove Deprecated Dependencies

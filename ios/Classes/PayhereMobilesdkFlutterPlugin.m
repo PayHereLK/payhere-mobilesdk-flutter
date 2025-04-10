@@ -10,6 +10,6 @@
 
 @implementation PayhereMobilesdkFlutterPlugin
 + (void)registerWithRegistrar:(NSObject<FlutterPluginRegistrar>*)registrar {
-  [PayhereMobilesdkFlutterPlugin registerWithRegistrar:registrar];
+  [SwiftPayhereMobilesdkFlutterPlugin registerWithRegistrar:registrar];
 }
 @end

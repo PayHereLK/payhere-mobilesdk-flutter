@@ -1,7 +1,8 @@
 import Flutter
 import UIKit
+import payHereSDK
 
-public class PayhereMobilesdkFlutterPlugin: NSObject, FlutterPlugin {
+public class SwiftPayhereMobilesdkFlutterPlugin: NSObject, FlutterPlugin {
   
   private var lastResult: FlutterResult!
   
@@ -62,7 +63,7 @@ public class PayhereMobilesdkFlutterPlugin: NSObject, FlutterPlugin {
   
   public static func register(with registrar: FlutterPluginRegistrar) {
     let channel = FlutterMethodChannel(name: "payhere_mobilesdk_flutter", binaryMessenger: registrar.messenger())
-    let instance = PayhereMobilesdkFlutterPlugin()
+    let instance = SwiftPayhereMobilesdkFlutterPlugin()
     registrar.addMethodCallDelegate(instance, channel: channel)
   }
   
@@ -519,7 +520,7 @@ public class PayhereMobilesdkFlutterPlugin: NSObject, FlutterPlugin {
   }
 }
 
-extension PayhereMobilesdkFlutterPlugin : PHViewControllerDelegate{
+extension SwiftPayhereMobilesdkFlutterPlugin : PHViewControllerDelegate{
   public func onErrorReceived(error: Error) {
     let nsError = error as NSError
     

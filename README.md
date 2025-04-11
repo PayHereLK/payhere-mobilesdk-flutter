@@ -9,7 +9,7 @@ Integrating PayHere with your Flutter App is super easy with our PayHere Flutter
 Open your Flutter project's `pubspec.yaml` file and add the PayHere Flutter SDK dependency.
 ```yaml
 dependencies:
-  payhere_mobilesdk_flutter: ^3.1.1
+  payhere_mobilesdk_flutter: ^3.2.0
 ```
 
 Then run the following commands in your Flutter project directory.
@@ -49,6 +49,26 @@ i. Declare the Android `tools` namespace in the `<manifest>` element.
 ii. Add the `replace` merge rule for the `android:label` attribute in the `<application>` element.
 ```xml
 <application tools:replace="android:label">
+```
+
+##### c. Add the following ProGuard rules to your app-level `proguard-rules.pro` file for the release build.  #####
+```
+# Retrofit annotations and interfaces
+-keepattributes Signature
+-keepattributes *Annotation*
+
+-keep interface retrofit2.** { *; }
+-keep class retrofit2.** { *; }
+-keep class okhttp3.** { *; }
+-keep class okio.** { *; }
+
+# PayHere Classes
+-keep class lk.payhere.** { *; }
+-keep interface lk.payhere.androidsdk.PayhereSDK { *; }
+-keep interface u2.c { *; }
+-keep class lk.payhere.androidsdk.models.PaymentMethodResponse { *; }
+-keep class lk.payhere.androidsdk.models.** { *; }
+-keep class lk.payhere.androidsdk.** { *; }
 ```
 
 ### 3. iOS Pre-requisites ###

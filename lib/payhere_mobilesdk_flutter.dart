@@ -1,6 +1,4 @@
 
-import 'payhere_mobilesdk_flutter_platform_interface.dart';
-
 import 'package:flutter/services.dart';
 
 /// Handler for completed payments
@@ -24,41 +22,44 @@ class PayHere {
   /// Payment completion is notified to the [onCompleted] handler.
   /// Errors are notified to the [onError] handler.
   /// When the user dismisses the bottom sheet it is notified to the [onDismissed] handler.
-  static void startPayment(
-      Map paymentObject,
-      PayHereOnCompletedHandler onCompleted,
-      PayHereOnErrorHandler onError,
-      PayHereOnDismissedHandler onDismissed) {
-    const _resultKeySuccess = 'success';
-    const _resultKeyData = 'fldata';
-    const _resultKeyCallback = 'flcallback';
+static void startPayment(
+  Map paymentObject,
+  PayHereOnCompletedHandler onCompleted,
+  PayHereOnErrorHandler onError,
+  PayHereOnDismissedHandler onDismissed,
+) {
+  const resultKeySuccess = 'success';
+  const resultKeyData = 'fldata';
+  const resultKeyCallback = 'flcallback';
 
-    const _resultCallbackTypeError = 'error';
-    const _resultCallbackTypeDismiss = 'dismiss';
+  const resultCallbackTypeError = 'error';
+  const resultCallbackTypeDismiss = 'dismiss';
 
-    _channel.invokeMethod("startPayment", paymentObject).then((value) {
-      // print(value);
-
-      // On return, value is a List<dynamic>
-
-      dynamic resultDictionary = value[0];
-      Map<dynamic, dynamic> result = resultDictionary as Map<dynamic, dynamic>;
-      bool resultSuccess = result[_resultKeySuccess] as bool;
+  _channel.invokeMethod("startPayment", paymentObject).then((value) {
+    if (value is List && value.isNotEmpty) {
+      final result = value[0] as Map<dynamic, dynamic>;
+      final resultSuccess = result[resultKeySuccess] as bool;
 
       if (resultSuccess) {
-        String resultPaymentId = result[_resultKeyData] as String;
+        final resultPaymentId = result[resultKeyData] as String;
         onCompleted(resultPaymentId);
       } else {
-        String resultCallbackType = result[_resultKeyCallback] as String;
-        if (resultCallbackType == _resultCallbackTypeError) {
-          String error = result[_resultKeyData] as String;
+        final resultCallbackType = result[resultKeyCallback] as String;
+        if (resultCallbackType == resultCallbackTypeError) {
+          final error = result[resultKeyData] as String;
           onError(error);
-        } else if (resultCallbackType == _resultCallbackTypeDismiss) {
+        } else if (resultCallbackType == resultCallbackTypeDismiss) {
           onDismissed();
         } else {
           onError('Unknown callback');
         }
       }
-    });
-  }
+    } else {
+      onError("Invalid response from native SDK.");
+    }
+  }).catchError((e) {
+    onError(e.toString());
+  });
+}
+
 }

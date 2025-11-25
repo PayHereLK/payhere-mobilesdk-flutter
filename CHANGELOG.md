@@ -103,3 +103,6 @@ Remove Deprecated Dependencies
 
 ## 3.2.0
 Bug fixes and SDK update
+
+## 3.2.1
+Update PayHere ios sdk version

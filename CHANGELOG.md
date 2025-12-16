@@ -106,3 +106,6 @@ Bug fixes and SDK update
 
 ## 3.2.1
 Update PayHere ios sdk version
+
+## 3.2.2
+Update PayHere ios sdk version

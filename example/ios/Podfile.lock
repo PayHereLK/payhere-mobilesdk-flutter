@@ -4,16 +4,16 @@ PODS:
   - integration_test (0.0.1):
     - Flutter
   - ObjectMapper (4.4.2)
-  - payhere_mobilesdk_flutter (3.2.1):
+  - payhere_mobilesdk_flutter (3.2.2):
     - Flutter
-    - payHereSDK (= 3.2.0)
-  - payHereSDK (3.2.0):
+    - payHereSDK (= 3.2.1)
+  - payHereSDK (3.2.1):
     - Alamofire (~> 5.10.2)
     - ObjectMapper
     - SDWebImage
-  - SDWebImage (5.21.3):
-    - SDWebImage/Core (= 5.21.3)
-  - SDWebImage/Core (5.21.3)
+  - SDWebImage (5.21.5):
+    - SDWebImage/Core (= 5.21.5)
+  - SDWebImage/Core (5.21.5)
 
 DEPENDENCIES:
   - Flutter (from `Flutter`)
@@ -41,9 +41,9 @@ SPEC CHECKSUMS:
   Flutter: cabc95a1d2626b1b06e7179b784ebcf0c0cde467
   integration_test: 4a889634ef21a45d28d50d622cf412dc6d9f586e
   ObjectMapper: e6e4d91ff7f2861df7aecc536c92d8363f4c9677
-  payhere_mobilesdk_flutter: 43a90b5fbd89ef214ab1bcf2d6422038c3ad131c
-  payHereSDK: 1c2f64ab4f9b2afe7b6117b732b807de0f49004f
-  SDWebImage: 16309af6d214ba3f77a7c6f6fdda888cb313a50a
+  payhere_mobilesdk_flutter: 09726a836fe2e173e67bc9cfe0582437238488c8
+  payHereSDK: aaa515de84eb7fe4f00d6a2b3ebced284d63e792
+  SDWebImage: e9c98383c7572d713c1a0d7dd2783b10599b9838
 
 PODFILE CHECKSUM: 3da2775c839d0128cbca9cdc46e5ce8fbb41a043
 

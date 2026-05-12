@@ -109,3 +109,6 @@ Update PayHere ios sdk version
 
 ## 3.2.2
 Update PayHere ios sdk version
+
+## 3.2.3
+Update PayHere android sdk version
